@@ -2,7 +2,7 @@
 
 require_once __DIR__."/../bootstrap.php";
 
-$app->get("/clientes", function (){
+$app->get("/clientes", function () use($app){
         $clientes = [ 'Cliente1' =>
         [
             'Nome' => 'Denilson',
@@ -30,20 +30,7 @@ $app->get("/clientes", function (){
         ]
     ];
 
-    foreach($clientes as $key => $value){
-         echo
-         "
-         {$key}
-            <br/ >
-            {
-            <br/>
-         &nbsp;&nbsp;   \"Nome\" :   \"{$value['Nome']}\" <br/>
-         &nbsp;&nbsp;   \"CPF\":    \"{$value['CPF']}\"  <br/>
-         &nbsp;&nbsp;   \"Email\":  \"{$value['email']}\" <br/>
-         }
-         <br /><br />
-         ";
-    }
+    return $app->json($clientes);
 });
 
 $app->run();
